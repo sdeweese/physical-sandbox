@@ -1,6 +1,5 @@
 ### Table of Contents
 - [Overview](#overview)
-- [App Hosting Overview](#app-hosting-overview )
 - [Access Details](#access-details)
 - [Additional Information](#additional-information)
 - [VPN Information](#vpn-information)
@@ -28,14 +27,6 @@ The Programmability Configuration Guides can be accessed from https://developer.
 New Application Hosting Features available in this release:  
 
 IOS XE 17.15 on Catalyst 9000 provides developers new application hosting capabilities. Developers can create their own docker container based apps and use Catalyst 9300 to host these apps.
-
-## App Hosting Overview:
-
-Application Hosting can be used by development and operations (DevOps) personnel who plan to optimize networks by collecting analytics of the network in real-time, locate where problems occur, and investigate issues in a collaborative manner in order to maintain the health of the network.
-
-Catalyst 9000 series switches were built to support Intent Based Networking. The switches can now support native docker applications. 
-
-Docker helps in easy portability of applications, version controlling and expedites the devops cycle. You can now securely deploy the apps right next to mission critical infrastructure. Process and files access for apps are isolated and restricted making it completely safe and secure. Application Hosting solution on Catalyst 9000 series provides the much needed intelligence at the edge.
 
 ###  Benefits:
 
@@ -67,7 +58,6 @@ Developer reserves the Lab and receives software VPN access information and cred
 * [DevNet Python Code Samples](https://github.com/CiscoDevNet/python_code_samples_network)  
 * [https://github.com/DevNetSandbox/sbx_iosxe](https://github.com/DevNetSandbox/sbx_iosxe)  
 *   [IOS XE on DevNet](https://developer.cisco.com/site/ios-xe/)
-*   [Application Hosting on IOS XE on DevNet](https://developer.cisco.com/app-hosting/)
 *   [Model Driven Programmability on DevNet](https://developer.cisco.com/site/standard-network-devices/)
 *   [Python for Network Automation on DevNet](https://developer.cisco.com/site/python/)
 
