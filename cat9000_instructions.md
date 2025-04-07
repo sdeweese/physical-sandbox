@@ -1,5 +1,6 @@
 ### Table of Contents
 - [Overview](#overview)
+- [Programmability Overview](#programmability-overview)
 - [Access Details](#access-details)
 - [Additional Information](#additional-information)
 - [VPN Information](#vpn-information)
@@ -27,6 +28,22 @@ The Programmability Configuration Guides can be accessed from https://developer.
 New Application Hosting Features available in this release:  
 
 IOS XE 17.15 on Catalyst 9000 provides developers new application hosting capabilities. Developers can create their own docker container based apps and use Catalyst 9300 to host these apps.
+
+## Programmability Overview:
+[YANG Suite](https://github.com/CiscoDevNet/yangsuite) is HTML5 based tooling that is available for working with the YANG based programmable interfaces on Cisco IOS XE, XR, and NX Network Operating Systems. It has plugins that allow for interacting with the programmable interfaces and supports downloading YANG files directly from network devices. In this module, we will explore using NETCONF and RESTCONF to configure a switch and we will create a gRPC telemetry subscriptions.
+
+This guide has the following sections:
+- [NETCONF](https://github.com/CiscoDevNet/yangsuite/blob/main/examples/NETCONF.md)
+- [RESTCONF](https://github.com/CiscoDevNet/yangsuite/blob/main/examples/RESTCONF.md)
+
+### Learn more about YANG Suite
+- [YANG Suite GitHub](https://github.com/CiscoDevNet/yangsuite)
+- [YANG Suite on DevNet](https://developer.cisco.com/yangsuite/)
+
+### YANG Suite Videos
+- [Getting started with Cisco YANG Suite](https://youtu.be/smrhjL5Ayz0)
+- [All YANG Suite, all the time, DevNet Snack Minute, Episode 9](https://www.youtube.com/watch?v=3zmNDfn8b38)
+- [NETCONF with YANG Suite](https://www.youtube.com/watch?v=dTun33611JA)
 
 ###  Benefits:
 
