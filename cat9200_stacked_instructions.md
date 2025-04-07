@@ -45,12 +45,6 @@ This guide has the following sections:
 - [All YANG Suite, all the time, DevNet Snack Minute, Episode 9](https://www.youtube.com/watch?v=3zmNDfn8b38)
 - [NETCONF with YANG Suite](https://www.youtube.com/watch?v=dTun33611JA)
 
-###  Benefits:
-
-* **Easier hosting:** Create, deploy and run applications easily by making use of the ability to host docker containers on Catalyst 9000 series.
-* **Enhanced agility:** Drive greater business agility as developers can quickly develop applications and deploy them where needed.
-
-The sandbox provides developers an environment to experiment with Application Hosting on IOS XE. To understand the benefits of Application Hosting, developers can create their own apps in the developer environment or bring in their own apps. These apps can then be deployed using the Catalyst 9300 that the developer has reserved.
 
 ## Access Details
 Developer reserves the Lab and receives software VPN access information and credentials via email at the start of the reservation. Once connected via software VPN the developer can access the lab's devices and server via Telnet/SSH/HTTP.
