@@ -16,18 +16,15 @@ Some of the programmability features* developers and network engineers can explo
 
 *   Model Driven Programmability with YANG Data Models and NETCONF and RESTCONF
 *   Linux Guest Shell on-box for running Linux Applications and run Python Scripts directly at the at the edge.
-*   Application Hosting allows application developers and network engineers to build and deploy applications (custom or off the shelf) on the network device
+
 
 **IMPORTANT NOTE:** This sandbox is not built to support testing of Day 0 Technologies such as ZTP, iPXE, and PNP.  If you try to clear out configurations and use these features you will lose access to your switch.  
 
 IOS XE is the software running on many platforms from Cisco including switches, routers, gateways, etc.  Not all programmability features are available on every platform.  Check specific platform documentation for details.
 
-The Programmability Configuration Guides can be accessed from https://developer.cisco.com/iosxe/ and selection Docs.
+The Programmability Configuration Guides can be accessed from https://developer.cisco.com/iosxe/ and selection Docs. For all 9200 configuration guides by release, see this link: https://www.cisco.com/c/en/us/support/switches/catalyst-9200-r-series-switches/products-installation-and-configuration-guides-list.html
 
 
-New Application Hosting Features available in this release:  
-
-IOS XE 17.15 on Catalyst 9000 provides developers new application hosting capabilities. Developers can create their own docker container based apps and use Catalyst 9300 to host these apps.
 
 ## Programmability Overview:
 [YANG Suite](https://github.com/CiscoDevNet/yangsuite) is HTML5 based tooling that is available for working with the YANG based programmable interfaces on Cisco IOS XE, XR, and NX Network Operating Systems. It has plugins that allow for interacting with the programmable interfaces and supports downloading YANG files directly from network devices. In this module, we will explore using NETCONF and RESTCONF to configure a switch and we will create a gRPC telemetry subscriptions.
