@@ -35,6 +35,7 @@ IOS XE 17.15 on Catalyst 9000 provides developers new application hosting capabi
 This guide has the following sections:
 - [NETCONF](https://github.com/CiscoDevNet/yangsuite/blob/main/examples/NETCONF.md)
 - [RESTCONF](https://github.com/CiscoDevNet/yangsuite/blob/main/examples/RESTCONF.md)
+- [gNMI](https://github.com/CiscoDevNet/yangsuite/blob/main/examples/gNMI.md)
 
 ### Learn more about YANG Suite
 - [YANG Suite GitHub](https://github.com/CiscoDevNet/yangsuite)
