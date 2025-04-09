@@ -9,4 +9,5 @@ There are three options within this phyiscal sandbox
 Within each guide, you will have instructions on how to access the physical sandbox as well as guides on how to work with the device programmatically using YANG Models.
 
 Below is a diagram of all of the avaialble physical sandboxes:
+
 ![Physical Sandboxes](physical-sandboxes.png)
