@@ -10,6 +10,8 @@ Use these guides to learn how to leverage the DevNet Physical Sandboxes!
 - [Additional Information](#additional-information)
 - [VPN Information](#vpn-information)
 
+![Catalyst Family](./imgs/catalyst-family.png)
+
 
 ## Overview
 
@@ -21,9 +23,7 @@ There are three options within this phyiscal sandbox
 
 Within each guide, you will have instructions on how to access the physical sandbox as well as guides on how to work with the device programmatically using YANG Models.
 
-
 The **IOS XE on Catalyst 9000** Sandbox offers developers access to a physical Catalyst 9000 switch running release 17.15 IOS XE.  Here you can test out the programmability features and data models available in this version. 
-
 
 Some of the programmability features developers and network engineers can explore include:  
 
@@ -37,7 +37,7 @@ IOS XE is the software running on many platforms from Cisco including switches, 
 
 New Application Hosting Features available in this release:  
 
-IOS XE 17.15 on Catalyst 9000 provides developers new application hosting capabilities. Developers can create their own docker container based apps and use Catalyst 9300 to host these apps.
+IOS XE 17.15 on Catalyst 9300 provides developers new application hosting capabilities. Developers can create their own docker container based apps and use Catalyst 9300 to host these apps. **Note: the app hosting capabilities are not supported on 9200 switches.**
 
 The Programmability Configuration Guides can be accessed from https://developer.cisco.com/iosxe/ and selection Docs. 
 - For all 9200 configuration guides by release, see this link:
