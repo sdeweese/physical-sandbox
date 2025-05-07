@@ -46,7 +46,7 @@ There are a few options within this phyiscal sandbox:
     <!-- C9300X-24Y
     ![C9300X-24Y](./imgs/C9300X-24Y+NM-8Y_Front.png) -->
 
-<!-- 1. **C9300 Standalone** (): -->
+    <!-- 1. **C9300 Standalone** (): -->
 
 1. **C9300L/C9300LM Stack** (4 devices divided into a 2-member C9300L-24U-4G stack and a 2-member C9300LM-24U-4Y stack): This guide you will be able to work with a C9300 stack running Cisco IOS XE 17.15 with NETCONF & RESTCONF enabled. The C9300L has fixed uplinks and supports mGig density of 12x10G and the C9300LM supports 8x10G. The C9300LM-24U-4Y has Stackable 24 x 10/100/1000 M UPOE ports; 4 x 25 GE SFP28 fixed uplink ports; PoE budget of 420 W with a single default 600 WAC power supply; supports StackWise-320. You may be curious about the differences between the C9300L and C9300LM. One of the major differences is the C9300L supports 1/10G/40G uplinks while the C9300LM supoorts 1/10G/25G uplinks. Note: There is no SSD for app-hosting use case.
 
