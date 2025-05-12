@@ -35,7 +35,19 @@ Developer reserves the Lab and receives software VPN access information and cred
 
 ## Sandbox Overview
 
-There are a few options within this phyiscal sandbox:
+### Sandbox Summary
+**C9200 Stacking - Key Differences at a Glance**
+| Sandbox          | What's available?  | Version | # Simultaneous users | App Hosting 
+| --------         | ------- | ------- | ------- | ------- |
+| Virtual Switch   | C9000 Virtual Swithes | 17.15.1 | many users will have access to the same always-on box    | Yes    |
+| C9300 Standalone | 4 standalone C9300X-24HX devices and 5 standalone C9300 devices | 17.15.1 | 9     | Yes     |
+| C9300 Stack      | 2-member C9300L-24U-4G stack & 2-member C9300LM-24U-4Y stack | 17.15.1 | 2 (each user will receive access to a 2-memeber stack)    | Supported on this SKU, but not available in this sandbox (no SSD)    |
+| C9200 Standalone | C9200CX | 17.15.1 | 1     | Not supported on this SKU     |
+| C9200 Stack      | 2-member C9200L-24P-4G stack & 2-member C9200-24P stack | 17.15.1 | 4 (each user will receive access to a 2-memeber stack)     | Not supported on this SKU    |
+
+
+
+Learn more details about the various sandbox options:
 1. **Virtual Switch** - Likely, you have already worked with the [C9000 Virtual Switch](https://devnetsandbox.cisco.com/DevNet/catalog/Cat9k-Always-On_cat9k-always-on) (or C9KV) Sandbox. Now, you're ready to explore physical hardware and capabilities. This device has hostname [devnetsandboxiosxec9k.cisco.com](devnetsandboxiosxec9k.cisco.com).
 
 1. **C9300X & C9300 Standalone** (4 standalone C9300X-24HX devices and 5 standalone C9300 devices): In this guide, you will be able to work with a single (non-stacked) C9300 running Cisco IOS XE 17.15 with NETCONF & RESTCONF enabled. The C9300X-24HX has Stackable 24 Multigigabit Ethernet (100 Mbps or 1/2.5/5/10 Gbps) UPOE+ ports; PoE budget of 735W with 1100WAC power supply; supports StackPower+, StackWise-1T, and C9300X-NM network modules.
@@ -58,12 +70,12 @@ There are a few options within this phyiscal sandbox:
     ![C9300LM-24U-4Y](./imgs/C9300LM-24U-4Y_Front.jpg)
 
 
-1. **C9200CX Standalone** (1 device): In this guide, you will be able to work with a single (non-stacked) C9200 running Cisco IOS XE 17.15 with NETCONF & RESTCONF enabled. The C9200CX-12P offers PoE+ inline power on all downlink ports for a maximum power budget of 240W. Note: App hosting is not available on this SKU. The C9200CX is designed as a compact switch for space-constrained environments like offices, retail spaces, or industrial sites. Many C9200CX models are fanless, making them quiet and ideal for noise-sensitive areas Similar to the C9200L, it has fixed uplinks. Also, the C9300LM or mini switch is smaller in depth than the C9300L. Either switch is great for scenarios where space, noise, or heat are concerns.
+1. **C9200CX Standalone** (1 C9200CX device): In this guide, you will be able to work with a single (non-stacked) C9200 running Cisco IOS XE 17.15 with NETCONF & RESTCONF enabled. The C9200CX-12P offers PoE+ inline power on all downlink ports for a maximum power budget of 240W. Note: App hosting is not available on this SKU. The C9200CX is designed as a compact switch for space-constrained environments like offices, retail spaces, or industrial sites. Many C9200CX models are fanless, making them quiet and ideal for noise-sensitive areas Similar to the C9200L, it has fixed uplinks. Also, the C9300LM or mini switch is smaller in depth than the C9300L. Either switch is great for scenarios where space, noise, or heat are concerns.
 
     ![C9200CX-12P-2X2G](./imgs/C9200CX-12P-2X2G_Front.jpg)
 
 
-1. **C9200/C9200L Stack** (4 devices in a 2-member C9200L-24P-4G stack and a 2-member C9200-24P stack): In this guide, you will be able to work with a C9200 stack running Cisco IOS XE 17.15 with NETCONF & RESTCONF enabled. Note: App hosting is not available on this SKU.
+1. **C9200/C9200L Stack** (a 2-member C9200L-24P-4G stack and a 2-member C9200-24P stack): In this guide, you will be able to work with a C9200 stack running Cisco IOS XE 17.15 with NETCONF & RESTCONF enabled. Note: App hosting is not available on this SKU.
 Modular Uplinks: The C9200 models allow you to customize uplink ports (e.g., 1G, 10G, or 25G) by using pluggable uplink modules. These switches support full software features, including advanced programmability and network automation capabilities. Power and Flexibility: They are more flexible and suited for larger or more complex networks where scalability is needed. The C9200 supports 160 Gbps stacking bandwidth, which is higher and offers better performance for high-traffic environments. The C9200 uses modular StackWise-160 modules for stacking. These modules can be replaced or upgraded as needed. Because the stacking module is modular, it provides more flexibility in terms of deployment and future upgrades. The higher stacking bandwidth makes it more suitable for larger networks or those with intensive traffic needs.
 
     ![C9200-24P](./imgs/C9200-24P_with_NM-4X_Front.png)
@@ -138,31 +150,7 @@ Catalyst 9200 switches have many benefits and support L3 features such as OSPF, 
 
 One of the major values of a switching stack is high availability. For more details and scenarios, check out the 9200 stacking configuration guide: https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9200/software/release/17-15/configuration_guide/ha/b_1715_stck_mgr_ha_9200_cg.html
 
-Not sure which 9200 sandbox to try? Here are some quick comparisons: 
- 
-**C9200 Platform - Key Differences at a Glance**
-| Feature        | 9200                          | 9200L                          | 9200CX                        |
-|----------------|-------------------------------|--------------------------------|-------------------------------|
-| Uplinks        | Modular (customizable)        | Fixed (predefined)            | Fixed (predefined)           |
-| Form Factor    | Standard                      | Standard                      | Compact                       |
-| Fanless Options| No                            | No                            | Yes (quiet)                   |
-| Use Case       | Larger/complex networks       | Cost-sensitive deployments     | Space-constrained areas       |
-| Cost           | Higher                        | Lower                          | Similar to 9200L              |
-
-
-**C9200 Stacking - Key Differences at a Glance**
-| Feature           | 9200 Stack                          | 9200L Stack                               |
-|------------------|-------------------------------------|-------------------------------------------|
-| Stacking Bandwidth | 160 Gbps                           | 80 Gbps                                   |
-| Stacking Ports     | Modular (StackWise-160)            | Fixed (StackWise-80)                      |
-| Performance        | Higher (more traffic)              | Moderate (small/medium networks)          |
-| Flexibility        | More flexible (upgradable)         | Fixed, non-upgradable                     |
-| Cost               | More expensive                     | More cost-effective                       |
-
-
-
 **Note: 9200 switches do not support app hosting**
-
 
 
 ## Resources
