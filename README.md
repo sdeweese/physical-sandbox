@@ -45,6 +45,8 @@ Developer reserves the Lab and receives software VPN access information and cred
 | C9200 Standalone | C9200CX | 17.15.1 | 1     | Not supported on this SKU     |
 <!-- | C9200 Stack      | 2-member C9200L-24P-4G stack & 2-member C9200-24P stack | 17.15.1 | 4 (each user will receive access to a 2-memeber stack)     | Not supported on this SKU    | -->
 
+Sandbox Rack
+![Sandbox Rack](./imgs/sandbox-rack.jpg)
 
 
 Learn more details about the various sandbox options:
