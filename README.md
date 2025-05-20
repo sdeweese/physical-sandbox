@@ -41,7 +41,7 @@ Developer reserves the Lab and receives software VPN access information and cred
 | --------         | ------- | ------- | ------- | ------- |
 | Virtual Switch   | C9000 Virtual Swithes | 17.15.1 | many users will have access to the same always-on box    | Yes    |
 | Standalone C9300 | 4 standalone C9300X-24HX devices and 5 standalone C9300 devices | 17.15.1 | 9     | Yes     |
-| Switching Stack      | 2-member C9300L-24U-4G stack, 2-member C9300LM-24U-4Y stack, 2-member C9200L-24P-4G stack & 2-member C9200-24P stack | 17.15.1 | 4 (each user will receive access to a 2-memeber stack)    | No, note: 9300L supports App Hosting, but in this lab, there is no SSD, so no app hosting support; 9200 does not support app hosting    |
+| Switching Stack      | Two 2-member C9300X stacks, a 2-member C9300L-24U-4G stack, a 2-member C9300LM-24U-4Y stack, a 2-member C9200L-24P-4G stack and a 2-member C9200-24P stack | 17.15.1 | 6 (each user will receive access to a 2-memeber stack)    | No, note: 9300L supports App Hosting, but in this lab, there is no SSD, so no app hosting support; 9200 does not support app hosting    |
 | C9200 Standalone | C9200CX | 17.15.1 | 1     | Not supported on this SKU     |
 <!-- | C9200 Stack      | 2-member C9200L-24P-4G stack & 2-member C9200-24P stack | 17.15.1 | 4 (each user will receive access to a 2-memeber stack)     | Not supported on this SKU    | -->
 
@@ -62,10 +62,13 @@ Learn more details about the various sandbox options:
 
     <!-- 1. **C9300 Standalone** (): -->
 
-1. **Switching Stack** (a 2-member C9300L-24U-4G stack, a 2-member C9300LM-24U-4Y stack, a 2-member C9200L-24P-4G stack and a 2-member C9200-24P stack): This guide you will be able to work with a stack running Cisco IOS XE 17.15 with NETCONF & RESTCONF enabled. 
+1. **Switching Stack** (Two 2-member C9300X stacks, a 2-member C9300L-24U-4G stack, a 2-member C9300LM-24U-4Y stack, a 2-member C9200L-24P-4G stack and a 2-member C9200-24P stack): This guide you will be able to work with a stack running Cisco IOS XE 17.15 with NETCONF & RESTCONF enabled. 
 
     The C9300L has fixed uplinks and supports mGig density of 12x10G and the C9300LM supports 8x10G. The C9300LM-24U-4Y has Stackable 24 x 10/100/1000 M UPOE ports; 4 x 25 GE SFP28 fixed uplink ports; PoE budget of 420 W with a single default 600 WAC power supply; supports StackWise-320. You may be curious about the differences between the C9300L and C9300LM. One of the major differences is the C9300L supports 1/10G/40G uplinks while the C9300LM supoorts 1/10G/25G uplinks. Note: There is no SSD for app-hosting use case.
-
+    
+    C9300X-24HX
+    ![C9300X-24HX](./imgs/C9300X-24HX+NM-8Y_Front.png)  
+   
     C9300L-24P-4
     ![C9300L-24P-4G](./imgs/C9300L-24P-4_Front.jpg)
 
