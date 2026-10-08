@@ -52,6 +52,8 @@ Sandbox Rack
 Learn more details about the various sandbox options:
 1. **Virtual Switch** - Likely, you have already worked with the [C9000 Virtual Switch](https://devnetsandbox.cisco.com/DevNet/catalog/Cat9k-Always-On_cat9k-always-on) (or C9KV) Sandbox. Now, you're ready to explore physical hardware and capabilities. This device has hostname [devnetsandboxiosxec9k.cisco.com](devnetsandboxiosxec9k.cisco.com).
 
+2. **C9350 Series** - Cisco's next-generation stackable enterprise access switching platform powered by the **Cisco Silicon One** architecture, purpose-built for high-performance campus environments, AI workloads, and Wi-Fi 7 connectivity. It delivers wire-speed throughput and deep packet buffering with high-density Multigigabit (100M to 10G) access, flexible modular uplinks (up to 25G, 40G, 100G, and 400G), and up to **90W Cisco UPOE+** per port with Perpetual and Fast PoE to maintain endpoint power across reboots. Built for modern programmability and zero-trust security, the C9350 supports full model-driven automation (NETCONF, RESTCONF, gNMI telemetry), hardware-ready post-quantum cryptography (PQC) with MACsec-256 encryption, and x86 edge container application hosting, while integrating natively with both Cisco Catalyst Center and the Meraki Dashboard.
+
 1. **C9300X & C9300 Standalone** (4 standalone C9300X-24HX devices and 5 standalone C9300 devices): In this guide, you will be able to work with a single (non-stacked) C9300 running Cisco IOS XE 17.15 with NETCONF & RESTCONF enabled. The C9300X-24HX has Stackable 24 Multigigabit Ethernet (100 Mbps or 1/2.5/5/10 Gbps) UPOE+ ports; PoE budget of 735W with 1100WAC power supply; supports StackPower+, StackWise-1T, and C9300X-NM network modules.
 
     C9300X-24HX
