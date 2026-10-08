@@ -40,6 +40,7 @@ Developer reserves the Lab and receives software VPN access information and cred
 | Sandbox          | What's available?  | Version | # Simultaneous users | App Hosting
 | --------         | ------- | ------- | ------- | ------- |
 | Virtual Switch   | C9000 Virtual Swithes | 17.15.1 | many users will have access to the same always-on box    | Yes    |
+| C9350 Series | Stackable enterprise access switch; Multigigabit access (100M–10G), modular uplinks up to 400G, up to 90W UPOE+ | TBD | TBD | Yes (x86 edge container hosting) |
 | Standalone C9300 | 4 standalone C9300X-24HX devices and 5 standalone C9300 devices | 17.15.1 | 9     | Yes     |
 | Switching Stack      | Two 2-member C9300X stacks, a 2-member C9300L-24U-4G stack, a 2-member C9300LM-24U-4Y stack, a 2-member C9200L-24P-4G stack and a 2-member C9200-24P stack | 17.15.1 | 6 (each user will receive access to a 2-memeber stack)    | No, note: 9300L supports App Hosting, but in this lab, there is no SSD, so no app hosting support; 9200 does not support app hosting    |
 | C9200 Standalone | C9200CX | 17.15.1 | 1     | Not supported on this SKU     |
