@@ -36,14 +36,15 @@ Developer reserves the Lab and receives software VPN access information and cred
 ## Sandbox Overview
 
 ### Sandbox Summary
-**C9200 Stacking - Key Differences at a Glance**
-| Sandbox          | What's available?  | Version | # Simultaneous users | App Hosting
-| --------         | ------- | ------- | ------- | ------- |
-| Virtual Switch   | C9000 Virtual Swithes | 17.15.1 | many users will have access to the same always-on box    | Yes    |
-| C9350 Series | Stackable enterprise access switch; Multigigabit access (100M–10G), modular uplinks up to 400G, up to 90W UPOE+ | TBD | TBD | Yes (x86 edge container hosting) |
-| Standalone C9300 | 4 standalone C9300X-24HX devices and 5 standalone C9300 devices | 17.15.1 | 9     | Yes     |
-| Switching Stack      | Two 2-member C9300X stacks, a 2-member C9300L-24U-4G stack, a 2-member C9300LM-24U-4Y stack, a 2-member C9200L-24P-4G stack and a 2-member C9200-24P stack | 17.15.1 | 6 (each user will receive access to a 2-memeber stack)    | No, note: 9300L supports App Hosting, but in this lab, there is no SSD, so no app hosting support; 9200 does not support app hosting    |
-| C9200 Standalone | C9200CX | 17.15.1 | 1     | Not supported on this SKU     |
+**C9000 Sandbox Options at a Glance**
+
+| Sandbox | Available hardware | Total switches | IOS XE version | Concurrent users | App hosting |
+| --- | --- | ---: | --- | --- | --- |
+| Virtual Switch | 1 C9000 virtual switch | 1 | 17.15.1 | Multiple users share one always-on device | Available |
+| C9350 Series | 15 total: 13 standalone C9350 switches and 2 reserved for ZTP; stackable enterprise access platform with 100 Mbps–10 Gbps multigigabit access, modular uplinks up to 400 Gbps, and up to 90 W UPOE+ | 15 | 17.18.01 | 15 | Available (x86 edge container hosting) |
+| Standalone C9300 | 4 C9300X-24HX devices and 5 C9300 devices | 9 | 17.12.1r | 9 | Available |
+| Switching Stack | Two 2-member C9300X stacks, one C9300L-24U-4G stack, one C9300LM-24U-4Y stack, one C9200L-24P-4G stack, and one C9200-24P stack | 12 | 17.15.1 | 6 (each user gets one 2-member stack) | Unavailable in this lab: C9300L models lack an SSD, and C9200 models do not support app hosting |
+| Standalone C9200 | C9200CX | 1 | 17.18.04 | 1 | Unavailable on this model |
 <!-- | C9200 Stack      | 2-member C9200L-24P-4G stack & 2-member C9200-24P stack | 17.15.1 | 4 (each user will receive access to a 2-memeber stack)     | Not supported on this SKU    | -->
 
 Sandbox Rack
@@ -53,9 +54,9 @@ Sandbox Rack
 Learn more details about the various sandbox options:
 1. **Virtual Switch** - Likely, you have already worked with the [C9000 Virtual Switch](https://devnetsandbox.cisco.com/DevNet/catalog/Cat9k-Always-On_cat9k-always-on) (or C9KV) Sandbox. Now, you're ready to explore physical hardware and capabilities. This device has hostname [devnetsandboxiosxec9k.cisco.com](devnetsandboxiosxec9k.cisco.com).
 
-2. **C9350 Series** - Cisco's next-generation stackable enterprise access switching platform powered by the **Cisco Silicon One** architecture, purpose-built for high-performance campus environments, AI workloads, and Wi-Fi 7 connectivity. It delivers wire-speed throughput and deep packet buffering with high-density Multigigabit (100M to 10G) access, flexible modular uplinks (up to 25G, 40G, 100G, and 400G), and up to **90W Cisco UPOE+** per port with Perpetual and Fast PoE to maintain endpoint power across reboots. Built for modern programmability and zero-trust security, the C9350 supports full model-driven automation (NETCONF, RESTCONF, gNMI telemetry), hardware-ready post-quantum cryptography (PQC) with MACsec-256 encryption, and x86 edge container application hosting, while integrating natively with both Cisco Catalyst Center and the Meraki Dashboard.
+2. **C9350 Series** - This sandbox provides 13 standalone C9350 switches and 2 switches reserved for ZTP, running IOS XE 17.18.01. Cisco's next-generation stackable enterprise access switching platform is powered by the **Cisco Silicon One** architecture and built for high-performance campus environments, AI workloads, and Wi-Fi 7 connectivity. It delivers wire-speed throughput and deep packet buffering with high-density multigigabit (100 Mbps–10 Gbps) access, flexible modular uplinks (up to 25, 40, 100, and 400 Gbps), and up to **90 W Cisco UPOE+** per port with Perpetual and Fast PoE to maintain endpoint power across reboots. Built for modern programmability and zero-trust security, the C9350 supports model-driven automation (NETCONF, RESTCONF, gNMI telemetry), hardware-ready post-quantum cryptography (PQC) with MACsec-256 encryption, and x86 edge container application hosting, while integrating with Cisco Catalyst Center and the Meraki Dashboard.
 
-1. **C9300X & C9300 Standalone** (4 standalone C9300X-24HX devices and 5 standalone C9300 devices): In this guide, you will be able to work with a single (non-stacked) C9300 running Cisco IOS XE 17.15 with NETCONF & RESTCONF enabled. The C9300X-24HX has Stackable 24 Multigigabit Ethernet (100 Mbps or 1/2.5/5/10 Gbps) UPOE+ ports; PoE budget of 735W with 1100WAC power supply; supports StackPower+, StackWise-1T, and C9300X-NM network modules.
+1. **C9300X & C9300 Standalone** (4 standalone C9300X-24HX devices and 5 standalone C9300 devices): In this guide, you will be able to work with a single (non-stacked) C9300 running Cisco IOS XE 17.12.1r with NETCONF & RESTCONF enabled. The C9300X-24HX has Stackable 24 Multigigabit Ethernet (100 Mbps or 1/2.5/5/10 Gbps) UPOE+ ports; PoE budget of 735W with 1100WAC power supply; supports StackPower+, StackWise-1T, and C9300X-NM network modules.
 
     C9300X-24HX
     ![C9300X-24HX](./imgs/C9300X-24HX+NM-8Y_Front.png)
@@ -94,7 +95,7 @@ Learn more details about the various sandbox options:
     ![Stacking-Drawing](./imgs/stacking-drawing.png)
 
 
-1. **C9200CX Standalone** (1 C9200CX device): In this guide, you will be able to work with a single (non-stacked) C9200 running Cisco IOS XE 17.15 with NETCONF & RESTCONF enabled. The C9200CX-12P offers PoE+ inline power on all downlink ports for a maximum power budget of 240W. Note: App hosting is not available on this SKU. The C9200CX is designed as a compact switch for space-constrained environments like offices, retail spaces, or industrial sites. Many C9200CX models are fanless, making them quiet and ideal for noise-sensitive areas Similar to the C9200L, it has fixed uplinks. Also, the C9300LM or mini switch is smaller in depth than the C9300L. Either switch is great for scenarios where space, noise, or heat are concerns.
+1. **C9200CX Standalone** (1 C9200CX device): In this guide, you will be able to work with a single (non-stacked) C9200 running Cisco IOS XE 17.18.04 with NETCONF & RESTCONF enabled. The C9200CX-12P offers PoE+ inline power on all downlink ports for a maximum power budget of 240W. Note: App hosting is not available on this SKU. The C9200CX is designed as a compact switch for space-constrained environments like offices, retail spaces, or industrial sites. Many C9200CX models are fanless, making them quiet and ideal for noise-sensitive areas Similar to the C9200L, it has fixed uplinks. Also, the C9300LM or mini switch is smaller in depth than the C9300L. Either switch is great for scenarios where space, noise, or heat are concerns.
 
     ![C9200CX-12P-2X2G](./imgs/C9200CX-12P-2X2G_Front.jpg)
 
