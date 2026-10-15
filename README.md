@@ -4,6 +4,7 @@ Use this guide to learn how to leverage the DevNet Physical Sandboxes!
 
 ## Table of Contents
 - [Access Details](#access-details)
+- [Quick Start After Reservation](#quick-start-after-reservation)
 - [Sandbox Overview](#sandbox-overview)
 - [Programmability Overview](#programmability-overview)
 - [Benefits](#benefits)
@@ -33,19 +34,81 @@ Developer reserves the Lab and receives software VPN access information and cred
 
 [VPN access information for Windows, MAC and Linux](https://developer.cisco.com/docs/sandbox/#!getting-started/sandbox-vpn-info)
 
+## Quick Start After Reservation
+
+Use this checklist right after your reservation starts.
+
+1. Connect to the Cisco VPN using the reservation email details.
+2. Verify host reachability from your machine:
+
+```bash
+ping 10.10.20.181
+```
+
+3. SSH to the device and use the provided password:
+
+```bash
+ssh developer@10.10.20.181
+```
+
+4. Confirm platform and software details. You should see the device is running Cisco IOS XE 26.02.01:
+
+```text
+show version
+show switch detail
+```
+
+5. Confirm management API ports from your local machine:
+
+```bash
+nc -vz 10.10.20.181 830
+nc -vz 10.10.20.181 443
+```
+
+The results should be similar to this:
+
+```
+Connection to 10.10.20.181 port 830 [tcp/netconf-ssh] succeeded!
+
+Connection to 10.10.20.181 port 443 [tcp/https] succeeded!
+```
+
+6. Test RESTCONF authentication and data access:
+
+```bash
+curl -k -u developer:C1sco12345 https://10.10.20.181/restconf/data/
+```
+
+7. Start with read-only operations first, then move to configuration updates. You should see an output from your device. Next, you can explore the YANG Models using this [RESTCONF viewer](https://ciscodevnet.github.io/cisco-ios-xe-openapi-swagger/):
+
+### Common First-Hour Tasks
+
+1. Validate system facts: hostname, version, interfaces, and VLANs.
+2. Test one NETCONF read and one RESTCONF read against the same interface.
+3. Run a simple Python script from your local device to pull and print interface operational state.
+4. On stacks, verify active and standby members and stack role priorities.
+
+### Automation Environment Options
+
+1. Local machine over VPN: most common and fastest way to run Python and API tools.
+2. Build and test payloads using the RESTCONF Swagger documentation: [Cisco IOS XE OpenAPI](https://ciscodevnet.github.io/cisco-ios-xe-openapi-swagger/).
+3. YANG Suite: GUI-driven testing for NETCONF, RESTCONF, and model exploration. Start here: [Cisco YANG Suite Documentation](https://developer.cisco.com/docs/yangsuite).
+4. pyATS: test automation and repeatable validation workflows. Start here: [pyATS Getting Started](https://developer.cisco.com/docs/pyats-getting-started/).
+5. On-box workflows (platform dependent): Cisco IOS XE Guest Shell may be available; C9200 app hosting is not supported.
+
 ## Sandbox Overview
 
 ### Sandbox Summary
 **C9000 Sandbox Options at a Glance**
 
-| Sandbox | Available hardware | Total switches | IOS XE version | Concurrent users | App hosting |
+| Sandbox | Available hardware | Total switches | Cisco IOS XE version | Concurrent users | App hosting |
 | --- | --- | ---: | --- | --- | --- |
-| Virtual Switch | 1 C9000 virtual switch | 1 | 17.15.1 | Multiple users share one always-on device | Available |
-| C9350 Series | 15 total: 13 standalone C9350 switches and 2 reserved for ZTP; stackable enterprise access platform with 100 Mbps–10 Gbps multigigabit access, modular uplinks up to 400 Gbps, and up to 90 W UPOE+ | 15 | 17.18.01 | 15 | Available (x86 edge container hosting) |
-| Standalone C9300 | 4 C9300X-24HX devices and 5 C9300 devices | 9 | 17.12.1r | 9 | Available |
-| Switching Stack | Two 2-member C9300X stacks, one C9300L-24U-4G stack, one C9300LM-24U-4Y stack, one C9200L-24P-4G stack, and one C9200-24P stack | 12 | 17.15.1 | 6 (each user gets one 2-member stack) | Unavailable in this lab: C9300L models lack an SSD, and C9200 models do not support app hosting |
-| Standalone C9200 | C9200CX | 1 | 17.18.04 | 1 | Unavailable on this model |
-<!-- | C9200 Stack      | 2-member C9200L-24P-4G stack & 2-member C9200-24P stack | 17.15.1 | 4 (each user will receive access to a 2-memeber stack)     | Not supported on this SKU    | -->
+| Virtual Switch | 1 C9000 virtual switch | 1 | 26.02.01 | Multiple users share one always-on device | Available |
+| C9350 Series | 15 total: 13 standalone C9350 switches and 2 reserved for ZTP; stackable enterprise access platform with 100 Mbps–10 Gbps multigigabit access, modular uplinks up to 400 Gbps, and up to 90 W UPOE+ | 15 | 26.02.01 | 15 | Available (x86 edge container hosting) |
+| Standalone C9300 | 4 C9300X-24HX devices and 5 C9300 devices | 9 | 26.02.01 | 9 | Available |
+| Switching Stack | Two 2-member C9300X stacks, one C9300L-24U-4G stack, one C9300LM-24U-4Y stack, one C9200L-24P-4G stack, and one C9200-24P stack | 12 | 26.02.01 | 6 (each user gets one 2-member stack) | Note: C9200 models do not support app hosting |
+| Standalone C9200 | C9200CX | 1 | 26.02.01 | 1 | Unavailable on this model |
+<!-- | C9200 Stack      | 2-member C9200L-24P-4G stack & 2-member C9200-24P stack | 26.02.01 | 4 (each user will receive access to a 2-memeber stack)     | Not supported on this SKU    | -->
 
 Sandbox Rack
 ![Sandbox Rack](./imgs/sandbox-rack.jpg)
@@ -54,9 +117,12 @@ Sandbox Rack
 Learn more details about the various sandbox options:
 1. **Virtual Switch** - Likely, you have already worked with the [C9000 Virtual Switch](https://devnetsandbox.cisco.com/DevNet/catalog/Cat9k-Always-On_cat9k-always-on) (or C9KV) Sandbox. Now, you're ready to explore physical hardware and capabilities. This device has hostname [devnetsandboxiosxec9k.cisco.com](devnetsandboxiosxec9k.cisco.com).
 
-2. **C9350 Series** - This sandbox provides 13 standalone C9350 switches and 2 switches reserved for ZTP, running IOS XE 17.18.01. Cisco's next-generation stackable enterprise access switching platform is powered by the **Cisco Silicon One** architecture and built for high-performance campus environments, AI workloads, and Wi-Fi 7 connectivity. It delivers wire-speed throughput and deep packet buffering with high-density multigigabit (100 Mbps–10 Gbps) access, flexible modular uplinks (up to 25, 40, 100, and 400 Gbps), and up to **90 W Cisco UPOE+** per port with Perpetual and Fast PoE to maintain endpoint power across reboots. Built for modern programmability and zero-trust security, the C9350 supports model-driven automation (NETCONF, RESTCONF, gNMI telemetry), hardware-ready post-quantum cryptography (PQC) with MACsec-256 encryption, and x86 edge container application hosting, while integrating with Cisco Catalyst Center and the Meraki Dashboard.
+2. **C9350 Series** - This sandbox provides 13 standalone C9350-24P, running Cisco IOS XE 26.02.01. Additially, some are reserved for Zero Touch Provisioning (ZTP). Cisco's next-generation stackable enterprise access switching platform is powered by the **Cisco Silicon One** architecture and built for high-performance campus environments, AI workloads, and Wi-Fi 7 connectivity. It delivers wire-speed throughput and deep packet buffering with high-density multigigabit (100 Mbps–10 Gbps) access, flexible modular uplinks (up to 25, 40, 100, and 400 Gbps), and up to **90 W Cisco UPOE+** per port with Perpetual and Fast PoE to maintain endpoint power across reboots. Built for modern programmability and zero-trust security, the C9350 supports model-driven automation (NETCONF, RESTCONF, gNMI telemetry), hardware-ready post-quantum cryptography (PQC) with MACsec-256 encryption, and x86 edge container application hosting, while integrating with Cisco Catalyst Center and the Meraki Dashboard.
 
-1. **C9300X & C9300 Standalone** (4 standalone C9300X-24HX devices and 5 standalone C9300 devices): In this guide, you will be able to work with a single (non-stacked) C9300 running Cisco IOS XE 17.12.1r with NETCONF & RESTCONF enabled. The C9300X-24HX has Stackable 24 Multigigabit Ethernet (100 Mbps or 1/2.5/5/10 Gbps) UPOE+ ports; PoE budget of 735W with 1100WAC power supply; supports StackPower+, StackWise-1T, and C9300X-NM network modules.
+    C9350-24P
+    ![C9350](./imgs/C9350.jpg)
+
+1. **C9300X & C9300 Standalone** (4 standalone C9300X-24HX devices and 5 standalone C9300 devices): In this guide, you will be able to work with a single (non-stacked) C9300 running Cisco IOS XE 26.02.01 with NETCONF & RESTCONF enabled. The C9300X-24HX has Stackable 24 Multigigabit Ethernet (100 Mbps or 1/2.5/5/10 Gbps) UPOE+ ports; PoE budget of 735W with 1100WAC power supply; supports StackPower+, StackWise-1T, and C9300X-NM network modules.
 
     C9300X-24HX
     ![C9300X-24HX](./imgs/C9300X-24HX+NM-8Y_Front.png)
@@ -66,16 +132,15 @@ Learn more details about the various sandbox options:
 
     <!-- 1. **C9300 Standalone** (): -->
 
-1. **Switching Stack** (Two 2-member C9300X stacks, a 2-member C9300L-24U-4G stack, a 2-member C9300LM-24U-4Y stack, a 2-member C9200L-24P-4G stack and a 2-member C9200-24P stack): This guide you will be able to work with a stack running Cisco IOS XE 17.15 with NETCONF & RESTCONF enabled. 
+1. **Switching Stack** (Two 2-member C9300X stacks, a 2-member C9300L-24U-4G stack, a 2-member C9300LM-24U-4Y stack, a 2-member C9200L-24P-4G stack and a 2-member C9200-24P stack): This guide you will be able to work with a stack running Cisco IOS XE 26.02.01 with NETCONF & RESTCONF enabled. 
 
-    The C9300L has fixed uplinks and supports mGig density of 12x10G and the C9300LM supports 8x10G. The C9300LM-24U-4Y has Stackable 24 x 10/100/1000 M UPOE ports; 4 x 25 GE SFP28 fixed uplink ports; PoE budget of 420 W with a single default 600 WAC power supply; supports StackWise-320. You may be curious about the differences between the C9300L and C9300LM. One of the major differences is the C9300L supports 1/10G/40G uplinks while the C9300LM supoorts 1/10G/25G uplinks. Note: There is no SSD for app-hosting use case.
+    The C9300L has fixed uplinks and supports mGig density of 12x10G and the C9300LM supports 8x10G. The C9300LM-24U-4Y has Stackable 24 x 10/100/1000 M UPOE ports; 4 x 25 GE SFP28 fixed uplink ports; PoE budget of 420 W with a single default 600 WAC power supply; supports StackWise-320. You may be curious about the differences between the C9300L and C9300LM. One of the major differences is the C9300L supports 1/10G/40G uplinks while the C9300LM supoorts 1/10G/25G uplinks.
     
     C9300X-24HX
     ![C9300X-24HX](./imgs/C9300X-24HX+NM-8Y_Front.png)  
    
     C9300L-24P-4
-    ![C9300L-24P-4G](./imgs/C9300L-24P-4_Front.jpg)
-
+    ![C9300L-24P-4G](./imgs/C9200L-24P-4G_Front.png)
 
     C9300LM-24U-4Y
     ![C9300LM-24U-4Y](./imgs/C9300LM-24U-4Y_Front.jpg)
@@ -95,32 +160,32 @@ Learn more details about the various sandbox options:
     ![Stacking-Drawing](./imgs/stacking-drawing.png)
 
 
-1. **C9200CX Standalone** (1 C9200CX device): In this guide, you will be able to work with a single (non-stacked) C9200 running Cisco IOS XE 17.18.04 with NETCONF & RESTCONF enabled. The C9200CX-12P offers PoE+ inline power on all downlink ports for a maximum power budget of 240W. Note: App hosting is not available on this SKU. The C9200CX is designed as a compact switch for space-constrained environments like offices, retail spaces, or industrial sites. Many C9200CX models are fanless, making them quiet and ideal for noise-sensitive areas Similar to the C9200L, it has fixed uplinks. Also, the C9300LM or mini switch is smaller in depth than the C9300L. Either switch is great for scenarios where space, noise, or heat are concerns.
+1. **C9200CX Standalone** (1 C9200CX device): In this guide, you will be able to work with a single (non-stacked) C9200 running Cisco IOS XE 26.02.01 with NETCONF & RESTCONF enabled. The C9200CX-12P offers PoE+ inline power on all downlink ports for a maximum power budget of 240W. Note: App hosting is not available on this SKU. The C9200CX is designed as a compact switch for space-constrained environments like offices, retail spaces, or industrial sites. Many C9200CX models are fanless, making them quiet and ideal for noise-sensitive areas Similar to the C9200L, it has fixed uplinks. Also, the C9300LM or mini switch is smaller in depth than the C9300L. Either switch is great for scenarios where space, noise, or heat are concerns.
 
     ![C9200CX-12P-2X2G](./imgs/C9200CX-12P-2X2G_Front.jpg)
 
 
-<!-- 1. **C9200/C9200L Stack** (a 2-member C9200L-24P-4G stack and a 2-member C9200-24P stack): In this guide, you will be able to work with a C9200 stack running Cisco IOS XE 17.15 with NETCONF & RESTCONF enabled.  -->
+<!-- 1. **C9200/C9200L Stack** (a 2-member C9200L-24P-4G stack and a 2-member C9200-24P stack): In this guide, you will be able to work with a C9200 stack running Cisco IOS XE 26.02.01 with NETCONF & RESTCONF enabled.  -->
 
 
 
 ## Programmability Overview
 
 
-The **IOS XE on Catalyst 9000** Sandbox offers developers access to a physical Catalyst 9000 switch running release 17.15 IOS XE.  Here, you can test out the programmability features and data models available in this version. 
+The **Cisco IOS XE on Catalyst 9000** Sandbox offers developers access to a physical Catalyst 9000 switch running Cisco IOS XE 26.02.01.  Here, you can test out the programmability features and data models available in this version. 
 
 Some of the programmability features developers and network engineers can explore include: 
 *   Model Driven Programmability with YANG Data Models and NETCONF and RESTCONF
 *   Linux Guest Shell on-box for running Linux Applications and run Python Scripts directly at the at the edge.
-*   Application Hosting allows application developers and network engineers to build and deploy applications (custom or off the shelf) on the network device
+*   Application Hosting allows application developers and network engineers to build and deploy applications (custom or off the shelf) on the network device.
 
-**IMPORTANT NOTE:** This sandbox is not built to support testing of Day 0 Technologies such as ZTP, iPXE, and PNP.  If you try to clear out configurations and use these features you will lose access to your switch.  
+**IMPORTANT NOTE:** This sandbox is not built to support testing of Day 0 Technologies such as ZTP, iPXE, and PNP.  If you try to clear out configurations and use these features you will lose access to your switch. Check back for a dedicated C9350 ZTP workflow sandbox in the future. 
 
-IOS XE is the software running on many platforms from Cisco including switches, routers, gateways, etc. Not all programmability features are available on every platform. Check specific platform documentation for details.
+Cisco IOS XE is the software running on many platforms from Cisco including switches, routers, gateways, etc. Not all programmability features are available on every platform. Check specific platform documentation for details.
 
 New Application Hosting Features available in this release:  
 
-IOS XE 17.15 on Catalyst 9300 provides developers new application hosting capabilities. Developers can create their own docker container based apps and use Catalyst 9300 to host these apps. **Note: the app hosting capabilities are not supported on 9200 switches.**
+Cisco IOS XE 26.02.01 on Catalyst 9300 provides developers new application hosting capabilities. Developers can create their own docker container based apps and use Catalyst 9300 to host these apps. **Note: the app hosting capabilities are not supported on 9200 switches.**
 
 
 [YANG Suite](https://github.com/CiscoDevNet/yangsuite) is HTML5 based tooling that is available for working with the YANG based programmable interfaces on Cisco IOS XE, XR, and NX Network Operating Systems. It has plugins that allow for interacting with the programmable interfaces and supports downloading YANG files directly from network devices. In this module, we will explore using NETCONF and RESTCONF to configure a switch and we will create a gRPC telemetry subscriptions.
@@ -148,9 +213,9 @@ Catalyst 9300 switches have many benefits including enhanced high availability f
 * **Easier hosting:** Create, deploy and run applications easily by making use of the ability to host docker containers on Catalyst 9000 series.
 * **Enhanced agility:** Drive greater business agility as developers can quickly develop applications and deploy them where needed.
 
-The sandbox provides developers an environment to experiment with Application Hosting on IOS XE. To understand the benefits of Application Hosting, developers can create their own apps in the developer environment or bring in their own apps. These apps can then be deployed using the Catalyst 9300 that the developer has reserved.
+The sandbox provides developers an environment to experiment with Application Hosting on Cisco IOS XE. To understand the benefits of Application Hosting, developers can create their own apps in the developer environment or bring in their own apps. These apps can then be deployed using the Catalyst 9300 that the developer has reserved.
 
-One of the major values of a switching stack is high availability. For more details and scenarios, check out the 9300 stacking configuration guide: https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-15/configuration_guide/stck_mgr_ha/b_1715_stck_mgr_ha_9300_cg.html
+One of the major values of a switching stack is high availability. For more details and scenarios, check out the [9300 Stacking and High Availability Configuration Guide, Cisco IOS XE 26.x.x](https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/26-x/configuration_guide/stck_mgr_ha/b_26x_stck_mgr_ha_9300_cg.html).
 
 
 #### App Hosting Overview
@@ -167,30 +232,24 @@ Docker helps in easy portability of applications, version controlling and expedi
 ### 9200 
 Catalyst 9200 switches have many benefits and support L3 features such as OSPF, EIGRP, ISIS, RIP, and routed access. The C9200-24P includes 24 ports with full PoE+ support. In addition, the 9200CX supports basic BGP.
 
-One of the major values of a switching stack is high availability. For more details and scenarios, check out the 9200 stacking configuration guide: https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9200/software/release/17-15/configuration_guide/ha/b_1715_stck_mgr_ha_9200_cg.html
+One of the major values of a switching stack is high availability. For more details and scenarios, check out the [9200 Stacking and High Availability Configuration Guide, Cisco IOS XE 26.x.x](https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9200/software/release/26-x/configuration_guide/ha/b_26x_stck_mgr_ha_9200_cg.html).
 
 **Note: 9200 switches do not support app hosting**
 
 
 ## Resources
-* [9200 Data Sheet](https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9200-series-switches/nb-06-cat9200-ser-data-sheet-cte-en.html)
-* [9300 Data Sheet](https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9300-series-switches/nb-06-cat9300-ser-data-sheet-cte-en.html)
-* [Cisco Catalyst 9000 Switching Platform FAQ](https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9000/nb-06-cat9k-swit-plat-faq-cte-en.html)
-* [9200 configuration guides by release](
-https://www.cisco.com/c/en/us/support/switches/catalyst-9300-series-switches/products-installation-and-configuration-guides-list.html)
-* [9300 configuration guides by release](https://www.cisco.com/c/en/us/support/switches/catalyst-9300-series-switches/products-installation-and-configuration-guides-list.html)
-* [DevNet Python Code Samples](https://github.com/CiscoDevNet/python_code_samples_network)  
-* [SBX Sandbox](https://github.com/DevNetSandbox/sbx_iosxe)  
-* [IOS XE on DevNet](https://developer.cisco.com/site/ios-xe/)
-* [Application Hosting on IOS XE on DevNet](https://developer.cisco.com/app-hosting/)
-* [Model Driven Programmability on DevNet](https://developer.cisco.com/site/standard-network-devices/)
-* [Python for Network Automation on DevNet](https://developer.cisco.com/site/python/)
-
-> Samples are being developed across these features and added as you read this so check back often!!  
-
-
-### Learning Labs:
-Here are some Learning Labs where you can get some guided walkthroughs of features.  
-
-* ["Introduction to Model Driven Programmability (ex: NETCONF/YANG)" Learning Module](https://learninglabs.cisco.com/modules/intro-device-level-interfaces)
-* [Introduction to Guest Shell on IOS XE](https://learninglabs.cisco.com/modules/net_app_hosting)
+* [Cisco IOS XE on DevNet](https://developer.cisco.com/site/ios-xe/) - Cisco IOS XE one stop shop for programmability resources.
+* [9200 Data Sheet](https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9200-series-switches/nb-06-cat9200-ser-data-sheet-cte-en.html) - Hardware and platform reference for Catalyst 9200 models.
+* [9300 Data Sheet](https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9300-series-switches/nb-06-cat9300-ser-data-sheet-cte-en.html) - Hardware and platform reference for Catalyst 9300 models.
+* [Cisco Catalyst 9000 Switching Platform FAQ](https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9000/nb-06-cat9k-swit-plat-faq-cte-en.html) - Common design and deployment questions.
+* [Catalyst 9200 Configuration Guides by Release](https://www.cisco.com/c/en/us/support/switches/catalyst-9200-series-switches/products-installation-and-configuration-guides-list.html) - Feature guides and release-specific configuration docs.
+* [Catalyst 9300 Configuration Guides by Release](https://www.cisco.com/c/en/us/support/switches/catalyst-9300-series-switches/products-installation-and-configuration-guides-list.html) - Feature guides and release-specific configuration docs.
+* [Cisco IOS XE Programmability Configuration Guide, Cisco IOS XE 26.x.x](https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/prog/configuration/26x/26x-programmability-cg.html) - Core guide for NETCONF, RESTCONF, YANG, and programmability workflows.
+* [Cisco YANG Suite Documentation](https://developer.cisco.com/docs/yangsuite) - Setup and usage docs for YANG Suite tooling.
+* [Intro to YANG Suite Learning Lab](https://developer.cisco.com/learning/labs/intro-yangsuite/introduction-launching-yang-suite/) - Guided hands-on lab for first YANG Suite workflows.
+* [Introduction to Model Driven Programmability (ex: NETCONF/YANG) Learning Module > Select Learning Labs](https://learninglabs.cisco.com/modules/intro-device-level-interfaces) - Foundational Cisco IOS XE automation learning path.
+* [pyATS Getting Started](https://developer.cisco.com/docs/pyats-getting-started/) - Test automation framework quick start.
+* [RESTCONF YANG Model Swagger Documentation](https://ciscodevnet.github.io/cisco-ios-xe-openapi-swagger/) - Interactive OpenAPI/Swagger reference for Cisco IOS XE RESTCONF endpoints, request bodies, and schema definitions.
+* [Cisco IOS XE YANG Models Repository](https://github.com/YangModels/yang/tree/main/vendor/cisco/xe) - Cisco IOS XE model source for schema and payload development.
+* [RFC 8040 (RESTCONF)](https://datatracker.ietf.org/doc/html/rfc8040) - Protocol reference for RESTCONF semantics.
+* [DevNet Python Code Samples](https://github.com/CiscoDevNet/python_code_samples_network) - Example automation scripts.
