@@ -21,10 +21,10 @@ Developer reserves the Lab and receives software VPN access information and cred
 
 ### Ports
 
-* Catalyst 9000 Host: 10.10.20.181 (After VPN connection)  
-    * SSH Port: 22  
-    * NETCONF Port: 830  
-    * RESTCONF Ports: 443  
+* Catalyst 9000 Host: 10.10.20.181 (After VPN connection)
+    * SSH Port: 22
+    * NETCONF Port: 830
+    * RESTCONF Ports: 443
 
 *Do not change the credentials for, or remove any user credentials configured on the sandbox.*
 
@@ -137,8 +137,8 @@ Learn more details about the various sandbox options:
     The C9300L has fixed uplinks and supports mGig density of 12x10G and the C9300LM supports 8x10G. The C9300LM-24U-4Y has Stackable 24 x 10/100/1000 M UPOE ports; 4 x 25 GE SFP28 fixed uplink ports; PoE budget of 420 W with a single default 600 WAC power supply; supports StackWise-320. You may be curious about the differences between the C9300L and C9300LM. One of the major differences is the C9300L supports 1/10G/40G uplinks while the C9300LM supoorts 1/10G/25G uplinks.
     
     C9300X-24HX
-    ![C9300X-24HX](./imgs/C9300X-24HX+NM-8Y_Front.png)  
-   
+    ![C9300X-24HX](./imgs/C9300X-24HX+NM-8Y_Front.png)
+
     C9300L-24P-4
     ![C9300L-24P-4G](./imgs/C9200L-24P-4G_Front.png)
 
@@ -152,7 +152,7 @@ Learn more details about the various sandbox options:
 
     The C9200L models come with fixed uplink ports (predefined, non-modular), which simplifies deployment but reduces flexibility. These are more affordable compared to the C9200, making them suitable for smaller networks or cost-sensitive deployments. They support essential software features but may lack some advanced capabilities available in the C9200. The C9200L supports 80 Gbps stacking bandwidth, which is lower compared to the C9200 stack. The C9200L comes with built-in, fixed StackWise-80 ports, meaning you cannot upgrade or replace the stacking. While the stacking bandwidth is lower, the fixed design makes the C9200L more affordable and suitable for smaller networks where traffic demands are moderate.
 
-    C9200L-24P-4G 
+    C9200L-24P-4G
     ![C9200L-24P-4G](./imgs/C9200L-24P-4G_Front.png)
 
     For stacks, the devices will be connected together on the back similar to the diagram below. Notice the criss-crossed wires to make this possible:
@@ -174,7 +174,7 @@ Learn more details about the various sandbox options:
 
 The **Cisco IOS XE on Catalyst 9000** Sandbox offers developers access to a physical Catalyst 9000 switch running Cisco IOS XE 26.02.01.  Here, you can test out the programmability features and data models available in this version. 
 
-Some of the programmability features developers and network engineers can explore include: 
+Some of the programmability features developers and network engineers can explore include:
 *   Model Driven Programmability with YANG Data Models and NETCONF and RESTCONF
 *   Linux Guest Shell on-box for running Linux Applications and run Python Scripts directly at the at the edge.
 *   Application Hosting allows application developers and network engineers to build and deploy applications (custom or off the shelf) on the network device.
@@ -183,7 +183,7 @@ Some of the programmability features developers and network engineers can explor
 
 Cisco IOS XE is the software running on many platforms from Cisco including switches, routers, gateways, etc. Not all programmability features are available on every platform. Check specific platform documentation for details.
 
-New Application Hosting Features available in this release:  
+New Application Hosting Features available in this release:
 
 Cisco IOS XE 26.02.01 on Catalyst 9300 provides developers new application hosting capabilities. Developers can create their own docker container based apps and use Catalyst 9300 to host these apps. **Note: the app hosting capabilities are not supported on 9200 switches.**
 
@@ -207,7 +207,7 @@ This guide has the following sections:
 
 ##  Benefits
 
-### 9300 
+### 9300
 Catalyst 9300 switches have many benefits including enhanced high availability features such as Extended Fast Software Upgrade (xFSU), Stateful Switchover (SSO), Software Maintenance Upgrades (SMU), Graceful Insertion and Removal (GIR), Cisco StackWise® and StackPower technology. Further, the C9300 switches support all the foundational high-availability capabilities, including Platinum-efficient dual redundant power supplies and variable-speed, high-efficiency, redundant fans. Additionally, the 9300 has app hosting support, described in more detail below.
 
 * **Easier hosting:** Create, deploy and run applications easily by making use of the ability to host docker containers on Catalyst 9000 series.
@@ -222,14 +222,14 @@ One of the major values of a switching stack is high availability. For more deta
 
 Application Hosting can be used by development and operations (DevOps) personnel who plan to optimize networks by collecting analytics of the network in real-time, locate where problems occur, and investigate issues in a collaborative manner in order to maintain the health of the network.
 
-**Note:** App hosting is only available on 9300 sandboxes, NOT on the 9200 sandboxes. In this particular sandbox, the 9300L does not have an external SSD, meaning App Hosting is not available within this sandbox. However, please note that with an SSD, the 9300L switch does support app hosting. 
+**Note:** App hosting is only available on 9300 sandboxes, NOT on the 9200 sandboxes. In this particular sandbox, the 9300L does not have an external SSD, meaning App Hosting is not available within this sandbox. However, please note that with an SSD, the 9300L switch does support app hosting.
 
-Catalyst 9000 series switches were built to support Intent Based Networking. The switches can now support native docker applications. 
+Catalyst 9000 series switches were built to support Intent Based Networking. The switches can now support native docker applications.
 
 Docker helps in easy portability of applications, version controlling and expedites the devops cycle. You can now securely deploy the apps right next to mission critical infrastructure. Process and files access for apps are isolated and restricted making it completely safe and secure. Application Hosting solution on Catalyst 9000 series provides the much needed intelligence at the edge.
 
 
-### 9200 
+### 9200
 Catalyst 9200 switches have many benefits and support L3 features such as OSPF, EIGRP, ISIS, RIP, and routed access. The C9200-24P includes 24 ports with full PoE+ support. In addition, the 9200CX supports basic BGP.
 
 One of the major values of a switching stack is high availability. For more details and scenarios, check out the [9200 Stacking and High Availability Configuration Guide, Cisco IOS XE 26.x.x](https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9200/software/release/26-x/configuration_guide/ha/b_26x_stck_mgr_ha_9200_cg.html).
