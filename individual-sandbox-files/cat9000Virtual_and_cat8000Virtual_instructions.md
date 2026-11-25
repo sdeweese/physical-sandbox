@@ -1,7 +1,4 @@
 ## 📑 Table of Contents
-- [Overview and Sandbox Flavors](#overview-and-sandbox-flavors)
-  - [Cisco Catalyst 9000V (Switching Sandbox)](#cisco-catalyst-9000v-switching-sandbox)
-  - [Cisco Catalyst 8000V (Routing Sandbox)](#cisco-catalyst-8000v-routing-sandbox)
 - [Topology and Access Matrix](#topology-and-access-matrix)
   - [Connecting via DevNet AnyConnect VPN (If Required)](#connecting-via-devnet-anyconnect-vpn-if-required)
 - [Step 0: Pre-Flight Verification and Programmability Prerequisites](#step-0-pre-flight-verification-and-programmability-prerequisites)
@@ -20,25 +17,6 @@
 
 ---
 
-# Overview and Sandbox Flavors
-
-Welcome to the **Cisco Catalyst Virtual Programmability Sandbox**. This environment provides dedicated virtual Cisco IOS XE instances paired with a pre-configured **Linux Developer Workstation** to develop, test, and validate network automation workflows without requiring local software installation or physical lab hardware.
-
-> ℹ️ **Single Shared Management IP (`10.10.20.181`):**  
-> Because each virtual sandbox (Switching or Routing) is reserved as an independent dedicated pod, both virtual flavors use the identical default management IP address: **`10.10.20.181`**.
-
-### Cisco Catalyst 9000V (Switching Sandbox)
-* **Target Audience:** Campus network engineers, NetDevOps teams, and switching automation developers.
-* **Focus:** Layer 2 / Layer 3 enterprise switching, VLAN orchestration, interface state parsing, and declarative switch provisioning.
-* **Target IP:** `10.10.20.181`
-
-### Cisco Catalyst 8000V (Routing Sandbox)
-* **Target Audience:** Enterprise routing engineers, SD-WAN practitioners, and cloud edge developers.
-* **Focus:** Enterprise IP routing, static route provisioning, loopback orchestration, and WAN edge automation.
-* **Target IP:** `10.10.20.181`
-
----
-
 # Topology and Access Matrix
 
 Each reservable sandbox provides a dedicated pod consisting of an in-sandbox Linux Developer Workstation and your selected virtual Cisco IOS XE device:
@@ -46,27 +24,27 @@ Each reservable sandbox provides a dedicated pod consisting of an in-sandbox Lin
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
 │                   In-Sandbox Developer Workstation                     │
-│  • Web Terminal & Web VS Code: http://10.10.20.1810:8080                │
-│  • Jump Host: 10.10.20.1810 (developer / C1sco12345)                    │
+│  • Web Terminal & Web VS Code: http://10.10.20.181:8080                │
+│  • Jump Host: 10.10.20.181 (developer / C1sco12345)                    │
 │  • Pre-installed: Python, ncclient, Requests, Ansible, Terraform       │
 └───────────────────────────────────┬────────────────────────────────────┘
                                     │ Management Subnet (198.18.1.0/24)
                                     ▼
        ┌─────────────────────────────────────────────────────────┐
        │   Cisco Catalyst Virtual Device (C9000V or C8000V)      │
-       │   Target Management IP: 10.10.20.181                      │
+       │   Target Management IP: 10.10.20.181                    │
        │   Credentials: developer / C1sco12345                   │
        │   Enabled Services: SSH (22), NETCONF (830), HTTPS (443)│
        └─────────────────────────────────────────────────────────┘
 ```
 
 > 📌 **Important — Check Your Active Reservation:**  
-> The IP addresses (`10.10.20.181`, `10.10.20.1810`) and credentials (`developer` / `C1sco12345`) listed below reflect the standard internal pod defaults. Always verify the **Credentials & Details** panel on your active DevNet Sandbox reservation page for your specific assigned VPN endpoints, dynamic IP mappings, or password assignments.
+> The IP addresses (`10.10.20.181`, `10.10.20.181`) and credentials (`developer` / `C1sco12345`) listed below reflect the standard internal pod defaults. Always verify the **Credentials & Details** panel on your active DevNet Sandbox reservation page for your specific assigned VPN endpoints, dynamic IP mappings, or password assignments.
 
 | Resource / Tool | Access Method | Target Endpoint | Default Credentials |
 | :--- | :--- | :--- | :--- |
-| **Developer Workstation (Web UI)** | Browser (VS Code / Web Terminal) | `http://10.10.20.1810:8080` | `developer` / `C1sco12345` |
-| **Developer Workstation (SSH)** | Terminal / SSH | `10.10.20.1810:22` | `developer` / `C1sco12345` |
+| **Developer Workstation (Web UI)** | Browser (VS Code / Web Terminal) | `http://10.10.20.181:8080` | `developer` / `C1sco12345` |
+| **Developer Workstation (SSH)** | Terminal / SSH | `10.10.20.181:22` | `developer` / `C1sco12345` |
 | **Virtual Device (C9000V or C8000V)** | SSH / NETCONF / RESTCONF | `10.10.20.181` (Ports: `22`, `830`, `443`) | `developer` / `C1sco12345` |
 
 ---
@@ -76,7 +54,7 @@ Each reservable sandbox provides a dedicated pod consisting of an in-sandbox Lin
 Depending on how you choose to interact with your sandbox, you can connect directly in your browser or from your local workstation:
 
 1. **Option A: In-Browser Access (No VPN Required):**
-   * Use the embedded Web Terminal or Web VS Code at `http://10.10.20.1810:8080`.
+   * Use the embedded Web Terminal or Web VS Code at `http://10.10.20.181:8080`.
    * All automation tools and connectivity are self-contained inside the sandbox.
 
 2. **Option B: Local Machine / IDE Access (AnyConnect VPN Required):**
@@ -86,7 +64,7 @@ Depending on how you choose to interact with your sandbox, you can connect direc
      3. Authenticate using the **VPN Username** and **VPN Password** listed under your active reservation credentials.
      4. Once the VPN connection establishes, verify network reachability from your local terminal:
         ```bash
-        ping 10.10.20.1810   # Developer Workstation
+        ping 10.10.20.181   # Developer Workstation
         ping 10.10.20.181    # Catalyst Virtual Device (C9000V or C8000V)
         ```
 
@@ -95,20 +73,26 @@ Depending on how you choose to interact with your sandbox, you can connect direc
 # Step 0: Pre-Flight Verification and Programmability Prerequisites
 
 Before running automation scripts or API calls, start with familiar CLI commands to verify that your virtual device is online, running the expected software version, and has the required programmatic services enabled.
-
 ### A. Log in to Device CLI and Check Version
-From the Developer Workstation terminal (or your local terminal after connecting to VPN), SSH into your target device:
+From the Developer Workstation terminal, SSH into your target device:
 
+If using the C9000V Sandbox (Switch):
 ```bash
-ssh developer@10.10.20.181
+ssh developer@198.18.1.10
+# Enter password: C1sco12345
+```
+
+If using the C8000V Sandbox (Router):
+```bash
+ssh developer@198.18.1.20
 # Enter password: C1sco12345
 ```
 
 Once logged in, verify the software release and platform:
-```text
-device# show version | include Software|processor
-Cisco IOS XE Software, Version 17.15.01
-cisco C9000V (or C8000V) (virtual) processor
+```bash
+show version | include Software|processor
+# You should receive output similar to: Cisco IOS XE Software, Version 17.15.01
+# cisco C9000V (or C8000V) (virtual) processor with 3816432K/3072K bytes of memory.
 ```
 
 ---
@@ -116,17 +100,20 @@ cisco C9000V (or C8000V) (virtual) processor
 ### B. Verify NETCONF and RESTCONF Configuration
 Check the running configuration to confirm programmatic services are active:
 
-```text
-device# show running-config | section netconf
-netconf-yang
+```bash
+show running-config | section netconf
+# You should receive output: 
+# netconf-yang
 
-device# show running-config | section restconf|http
-ip http server
-ip http secure-server
-restconf
+show running-config | section restconf|http
+# You should receive output:
+# ip http server
+# ip http secure-server
+# restconf
 
-device# show netconf-yang status
-netconf-yang: enabled
+show netconf-yang status
+# You should receive output: 
+# netconf-yang: enabled
 ```
 
 ---
@@ -134,8 +121,8 @@ netconf-yang: enabled
 ### C. Enabling NETCONF and RESTCONF (Prerequisites / Fallback Config)
 If NETCONF or RESTCONF are not present (or if the configuration was wiped), apply the following prerequisite configuration directly at the CLI prompt:
 
-```text
-device# configure terminal
+```bash
+configure terminal
 !
 ! Enable AAA and local privilege level 15 user
 aaa new-model
@@ -143,13 +130,13 @@ aaa authentication login default local
 aaa authorization exec default local
 username developer privilege 15 secret C1sco12345
 !
-! Enable Model-Driven NETCONF over SSH (Port 830)
-netconf-yang
-!
 ! Enable HTTPS Server and RESTCONF API
 ip http server
 ip http secure-server
 restconf
+!
+! Enable Model-Driven NETCONF over SSH (Port 830)
+netconf-yang
 !
 end
 write memory
@@ -157,27 +144,18 @@ write memory
 
 Type `exit` to return to the Developer Workstation terminal.
 
+
 ---
 
 # Step-by-Step Getting Started (In-Sandbox Execution)
 
-All required runtimes, CLI binaries, Python virtual environments, and sample script repositories are **pre-configured on the Developer Workstation (`10.10.20.1810`)**.
+All required runtimes, CLI binaries, Python virtual environments, and sample script repositories are **pre-configured on the Developer Workstation (`10.10.20.181`)**.
 
 ---
 
 ### Step 1: Access Tools to Work with Your Sandbox
 
-#### 💡 About the Environment
-The **Linux Developer Workstation** is your pre-configured automation control plane. It comes with Python 3, a dedicated virtual environment, Git, Terraform, Ansible, and the `ncclient` / `requests` libraries pre-installed.
-
-1. Connect to the workstation using either:
-   * **In-Browser Web Terminal / VS Code:** Navigate to `http://10.10.20.1810:8080` in your sandbox browser.
-   * **SSH Direct:** Run `ssh developer@10.10.20.1810` from your jumpbox terminal (or local terminal via AnyConnect VPN).
-
-2. Activate the pre-configured Python virtual environment:
-   ```bash
-   source ~/venv/bin/activate
-   ```
+Using your machine's terminal window, you can interface directly with your sandbox. Note, for the tools below, you may need to review the linked documents to download or install the tool to your device.
 
 ---
 
