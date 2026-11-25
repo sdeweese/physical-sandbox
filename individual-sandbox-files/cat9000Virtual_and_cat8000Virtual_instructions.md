@@ -76,15 +76,8 @@ Before running automation scripts or API calls, start with familiar CLI commands
 ### A. Log in to Device CLI and Check Version
 From the Developer Workstation terminal, SSH into your target device:
 
-If using the C9000V Sandbox (Switch):
 ```bash
-ssh developer@198.18.1.10
-# Enter password: C1sco12345
-```
-
-If using the C8000V Sandbox (Router):
-```bash
-ssh developer@198.18.1.20
+ssh developer@10.10.20.181
 # Enter password: C1sco12345
 ```
 
@@ -149,13 +142,11 @@ Type `exit` to return to the Developer Workstation terminal.
 
 # Step-by-Step Getting Started (In-Sandbox Execution)
 
-All required runtimes, CLI binaries, Python virtual environments, and sample script repositories are **pre-configured on the Developer Workstation (`10.10.20.181`)**.
-
 ---
 
 ### Step 1: Access Tools to Work with Your Sandbox
 
-Using your machine's terminal window, you can interface directly with your sandbox. Note, for the tools below, you may need to review the linked documents to download or install the tool to your device.
+Note: none of the following steps are required. Rather, they are simply a way for you to get familiar with your virtual sandbox and some of the many tools available. Using your machine's terminal window, you can interface directly with your sandbox. For the tools below, you may need to review the linked documents to download or install the given tool to your device.
 
 ---
 
